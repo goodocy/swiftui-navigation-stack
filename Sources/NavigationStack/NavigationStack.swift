@@ -6,6 +6,7 @@
 import SwiftUI
 
 /// The transition type for the whole NavigationStackView.
+@available(iOS 13.0, *)
 public enum NavigationTransition {
     /// Transitions won't be animated.
     case none
@@ -43,7 +44,7 @@ public enum PopDestination {
 }
 
 // MARK: ViewModel
-
+@available(iOS 13.0, *)
 public class NavigationStack: ObservableObject {
 
     /// Default transition animation
@@ -135,6 +136,7 @@ public class NavigationStack: ObservableObject {
 }
 
 //the actual element in the stack
+@available(iOS 13.0, *)
 private struct ViewElement: Identifiable, Equatable {
     let id: String
     let wrappedElement: AnyView
@@ -147,6 +149,7 @@ private struct ViewElement: Identifiable, Equatable {
 // MARK: Views
 
 /// An alternative SwiftUI NavigationView implementing classic stack-based navigation giving also some more control on animations and programmatic navigation.
+@available(iOS 13.0, *)
 public struct NavigationStackView<Root>: View where Root: View {
     @ObservedObject private var navViewModel: NavigationStack
     private let rootViewID = "root"
@@ -203,6 +206,7 @@ public struct NavigationStackView<Root>: View where Root: View {
 }
 
 /// A view used to navigate to another view through its enclosing NavigationStack.
+@available(iOS 13.0, *)
 public struct PushView<Label, Destination, Tag>: View where Label: View, Destination: View, Tag: Hashable {
     @EnvironmentObject private var navViewModel: NavigationStack
     private let label: Label?
@@ -258,6 +262,7 @@ public struct PushView<Label, Destination, Tag>: View where Label: View, Destina
     }
 }
 
+@available(iOS 13.0, *)
 public extension PushView where Tag == Never {
 
     /// Creates a PushView that triggers the navigation on tap.
@@ -284,6 +289,7 @@ public extension PushView where Tag == Never {
 }
 
 /// A view used to navigate back to a previous view through its enclosing NavigationStack.
+@available(iOS 13.0, *)
 public struct PopView<Label, Tag>: View where Label: View, Tag: Hashable {
     @EnvironmentObject private var navViewModel: NavigationStack
     private let label: Label
@@ -335,6 +341,7 @@ public struct PopView<Label, Tag>: View where Label: View, Tag: Hashable {
     }
 }
 
+@available(iOS 13.0, *)
 public extension PopView where Tag == Never {
 
     /// Creates a PopView  that triggers the navigation on tap.
